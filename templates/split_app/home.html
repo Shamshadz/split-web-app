@@ -39,6 +39,12 @@
     {% block content %}
     <div class="container">
         <h1>Welcome!</h1>
+
+        <section>try: login
+            username: shamshad
+            password: 123
+        </section>
+
         {% if user.is_authenticated %}
         <h3>Hello {{fname}}!</h3>
         <h4>You're successfully logged in.</h4>
