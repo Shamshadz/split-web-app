@@ -1,12 +1,10 @@
 from multiprocessing import context
 from django.contrib import messages
-from split_app.forms import payeeForm
 from split_app.models import bill,payee
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login,logout as auth_logut
-from django.forms.models import modelformset_factory
 from django.contrib.auth.decorators import login_required
 
 
@@ -69,14 +67,14 @@ def page(request):
         description = request.POST['description']
         price = request.POST['price']
         name = request.POST.getlist('name')  #getlist
-        mobile = request.POST.getlist('mobile')
+        pay = request.POST.getlist('pay')
 
-        pay = bill(description=description,price=price)
-        pay.user = request.user
-        pay.save()
+        pay1 = bill(description=description,price=price)
+        pay1.user = request.user
+        pay1.save()
 
-        for name, mobile in zip(name, mobile):     # zip is something different
-            mypayee = payee(billId=pay,name=name,mobile=int(mobile))
+        for name, pay in zip(name, pay):     # zip is something different
+            mypayee = payee(billId=pay1,name=name,pay=int(pay))
             mypayee.save()
 
     return render(request, 'split_app/page.html',)
@@ -95,8 +93,6 @@ def page(request):
 #         for name, mobile in zip(name, mobile):     # zip is something different
 #             mypayee = payee(billId=pay,name=name,mobile=int(mobile))
 #             mypayee.save()
-
-    return render(request, 'split_app/page.html',)
 
 @login_required
 def pay(request):

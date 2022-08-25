@@ -14,4 +14,4 @@ class bill(models.Model):
 class payee(models.Model):
     billId = models.ForeignKey(bill,on_delete=models.CASCADE,related_name='persons')
     name = models.CharField(max_length=50)
-    mobile = models.IntegerField()
+    pay = models.IntegerField()

@@ -12,8 +12,8 @@ function increment() {
                                 <td><input type="text" name="name"></td>
                             </tr>
                             <tr>
-                                <th>Mobile:</th>
-                                <td><input type="number" name="mobile"></td>
+                                <th>pay:</th>
+                                <td><input type="number" name="pay"></td>
                             </tr>
                         </table>
                         <button type="button" class="btn btn-info" onclick="decrement(this)">-</button>`;
